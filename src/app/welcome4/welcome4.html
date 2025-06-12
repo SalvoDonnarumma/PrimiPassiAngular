@@ -1,0 +1,24 @@
+<app-jumbotron [Titolo]="titolo" [SottoTitolo]="sottotitolo"></app-jumbotron>
+<br>
+<br>
+<h3>Visualizzazione della tabella</h3>
+<div class="center-container">
+  <form class="d-flex" style="width: 30%; margin: 20px 0;">
+    <input 
+      [(ngModel)]="searchTerm"  
+      name="searchTerm"         
+      class="form-control me-2" 
+      type="search" 
+      placeholder="Search" 
+      aria-label="Search">
+    <button 
+      class="btn btn-outline-success"  
+      (click)="onClick()" 
+      type="button">
+      Cerca
+    </button>
+  </form>
+</div>
+<div class="center-container">
+    <app-my-table-component2 [tableConfig]="tableConfig" [data]="filteredData"></app-my-table-component2>
+</div>
