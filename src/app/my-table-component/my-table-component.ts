@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-my-table-component',
   imports: [CommonModule],
   templateUrl: './my-table-component.html',
-  styleUrl: './my-table-component.css'
+  styleUrl: './my-table-component.css',
 })
 export class MyTableComponent implements OnInit {
   @Input() tableConfig: MyTableConfig | undefined;
@@ -15,7 +15,6 @@ export class MyTableComponent implements OnInit {
   ngOnInit(): void {
     // Initialization logic if needed
   }
-
 }
 
 export interface MyTableConfig {

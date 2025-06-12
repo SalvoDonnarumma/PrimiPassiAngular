@@ -6,3 +6,8 @@
 h3 {
     text-align: center;
 }
+.center-container2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}

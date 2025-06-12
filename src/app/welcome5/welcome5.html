@@ -3,7 +3,7 @@
 <br>
 <h3>Visualizzazione della tabella</h3>
 <div class="center-container">
-  <form class="d-flex" style="width: 30%; margin: 20px 0;">
+  <form class="d-flex" style="width: 30%; margin: 10px 0;">
     <input 
       [(ngModel)]="searchTerm"  
       name="searchTerm"         
@@ -19,7 +19,9 @@
     </button>
   </form>
 </div>
-<app-my-button-component [buttonConfig]="myAddButtonSettings" (buttonClicked)="handleClick()"></app-my-button-component>
+<div class="center-container2">
+  <app-my-button-component [buttonConfig]="myAddButtonSettings" (buttonClicked)="handleClick()"></app-my-button-component>
+</div>
 <div class="center-container">
     <app-my-table-component3 [tableConfig]="tableConfig" [data]="filteredData" (actionEvent)="handleTableAction($event)"></app-my-table-component3>
 </div>

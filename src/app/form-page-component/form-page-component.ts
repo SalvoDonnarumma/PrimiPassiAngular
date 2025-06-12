@@ -1,20 +1,21 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form-page-component',
   imports: [CommonModule, FormsModule],
   templateUrl: './form-page-component.html',
-  styleUrl: './form-page-component.css'
+  styleUrl: './form-page-component.css',
 })
 export class FormPageComponent {
   titolo = 'FormPage';
-  sottotitolo = 'Benvenuto nella pagina con il from, qui puoi modificare un record già esistente e aggiungerne uno nuovo';
+  sottotitolo =
+    'Benvenuto nella pagina con il from, qui puoi modificare un record già esistente e aggiungerne uno nuovo';
   @Input() fields: FormField[] = [];
   @Input() initialData: any = {};
   @Input() editMode = '';
-  
+
   @Output() submit = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<void>();
 

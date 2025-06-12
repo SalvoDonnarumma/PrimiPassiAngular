@@ -1,14 +1,20 @@
-import { ChangeDetectorRef, Component, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { forwardRef } from "@angular/core";
-
+import { forwardRef } from '@angular/core';
 
 @Component({
   selector: 'app-my-table-component2',
   imports: [CommonModule, FormsModule, forwardRef(() => PaginationPipe)],
   templateUrl: './my-table-component2.html',
-  styleUrl: './my-table-component2.css'
+  styleUrl: './my-table-component2.css',
 })
 export class MyTableComponent2 implements OnInit {
   @Input() tableConfig: MyTableConfig2 | undefined;
@@ -17,18 +23,19 @@ export class MyTableComponent2 implements OnInit {
   sortedColumn: string | undefined;
   sortAsc = true;
 
-  currentPage : number = 1;
-  itemsPerPage : number = 5;
-  onItemsPerPageOptions : number[] = [5, 10, 15, 20];
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  onItemsPerPageOptions: number[] = [5, 10, 15, 20];
 
   constructor() {}
-  
+
   ngOnInit(): void {
     this.sortedColumn = this.tableConfig?.order?.defaultColumn;
-    this.sortAsc      = this.tableConfig?.order?.orderType === 'asc';
+    this.sortAsc = this.tableConfig?.order?.orderType === 'asc';
     this.sortData();
     this.itemsPerPage = this.tableConfig?.pagination.itemsPerPage ?? 5;
-    this.onItemsPerPageOptions = this.tableConfig?.pagination.itemsPerPageOptions ?? [5, 10, 15, 20];
+    this.onItemsPerPageOptions = this.tableConfig?.pagination
+      .itemsPerPageOptions ?? [5, 10, 15, 20];
 
     console.log(this.itemsPerPage);
     console.log(this.onItemsPerPageChange);
@@ -45,15 +52,15 @@ export class MyTableComponent2 implements OnInit {
   }
 
   private sortData() {
-  const dir = this.sortAsc ? 1 : -1;
-  if (this.data && this.sortedColumn) {
-    this.data = [...this.data].sort((a, b) => {
-      const v1 = a[this.sortedColumn as string];
-      const v2 = b[this.sortedColumn as string];
-      return v1 > v2 ? dir : v1 < v2 ? -dir : 0;
-    });
+    const dir = this.sortAsc ? 1 : -1;
+    if (this.data && this.sortedColumn) {
+      this.data = [...this.data].sort((a, b) => {
+        const v1 = a[this.sortedColumn as string];
+        const v2 = b[this.sortedColumn as string];
+        return v1 > v2 ? dir : v1 < v2 ? -dir : 0;
+      });
+    }
   }
-}
 
   onItemsPerPageChange(newItemsPerPage: number) {
     if (this.tableConfig?.pagination) {
@@ -66,7 +73,7 @@ export class MyTableComponent2 implements OnInit {
 export interface MyTableConfig2 {
   headers: MyHeaders[];
   order: MyOrder;
-  search: MySearch
+  search: MySearch;
   pagination: MyPagination;
 }
 
@@ -80,11 +87,11 @@ export class MyOrder {
   orderType: 'asc' | 'desc' | undefined;
 }
 
-export class MySearch{
+export class MySearch {
   columns: string[] | undefined;
 }
 
-export class MyPagination{
+export class MyPagination {
   itemsPerPage: number = 1;
   itemsPerPageOptions: number[] = [5, 10, 20];
 }
@@ -92,10 +99,14 @@ export class MyPagination{
 @Pipe({ name: 'paginate', pure: false })
 export class PaginationPipe implements PipeTransform {
   transform<T>(items: T[], currentPage: number, itemsPerPage: number): T[] {
-    console.log('PaginationPipe called', items?.length, currentPage, itemsPerPage);
+    console.log(
+      'PaginationPipe called',
+      items?.length,
+      currentPage,
+      itemsPerPage
+    );
     if (!items || items.length === 0) return [];
     const start = (currentPage - 1) * itemsPerPage;
     return items.slice(start, start + itemsPerPage);
   }
 }
-

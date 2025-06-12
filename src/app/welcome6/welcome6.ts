@@ -8,38 +8,30 @@ import { FormPageComponent } from '../form-page-component/form-page-component';
   selector: 'app-welcome6',
   imports: [CommonModule, FormsModule, FormPageComponent],
   templateUrl: './welcome6.html',
-  styleUrl: './welcome6.css'
+  styleUrl: './welcome6.css',
 })
-
 export class Welcome6 {
   formData: any = {};
   fields: any[] = [];
   mode: 'add' | 'edit' = 'add';
-  
+
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
-      mode: 'add' | 'edit',
-      item?: any,
-      fields: any[]
+      mode: 'add' | 'edit';
+      item?: any;
+      fields: any[];
     };
 
     if (state) {
       this.mode = state.mode;
       this.fields = state.fields;
-      this.formData = state.mode === 'edit' ? { ...state.item } : this.createEmptyItem();
+      this.formData =
+        state.mode === 'edit' ? { ...state.item } : this.createEmptyItem();
     }
 
-    console.log(state)
+    console.log(state);
   }
-
-  /*
-  createEmptyItem() {
-    return this.fields.reduce((acc, field) => {
-      acc[field.key] = field.type === 'number' ? 0 : '';
-      return acc;
-    }, {});
-  }*/
 
   createEmptyItem() {
     const emptyItem: any = {};
@@ -50,10 +42,10 @@ export class Welcome6 {
   }
 
   onSubmit(item: any) {
-    console.log('Aggiunta dei dati in corso: ')
+    console.log('Aggiunta dei dati in corso: ');
     console.log(item);
     this.router.navigate(['/welcome5'], {
-      state: { formData: item, mode: this.mode }
+      state: { formData: item, mode: this.mode },
     });
   }
 

@@ -6,11 +6,11 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './my-button-component.html',
-  styleUrl: './my-button-component.css'
+  styleUrl: './my-button-component.css',
 })
 export class MyButtonComponent implements OnInit {
   @Input()
-  buttonConfig: MyButtonConfig | undefined ;
+  buttonConfig: MyButtonConfig | undefined;
 
   @Output()
   buttonClicked: EventEmitter<void> = new EventEmitter<void>();
@@ -26,8 +26,8 @@ export class MyButtonComponent implements OnInit {
   }
 }
 
-export class MyButtonConfig{
-    customClass: string | undefined;
-    text: string | undefined;
-    icon: string | undefined;
+export class MyButtonConfig {
+  customClass: string | undefined;
+  text: string | undefined;
+  icon: string | undefined;
 }
